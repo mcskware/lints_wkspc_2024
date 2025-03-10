@@ -55,3 +55,92 @@ The process I usually use is something like this:
     * Update the `description`, 
 * Run `cargo t` and ensure that both the unit test and the integration test still run
 * Change this readme file with your own amusing and enlightening documentation
+
+## Things you might encounter
+
+### `#[allow]` vs `#[expect]`
+
+When running with a lot of lints, especially from the `restriction` group, you might find that
+you want to just use `#[allow]` here and there, especially when something is a false positive
+or when you're just writing test code.
+
+Note that the `allow_attributes` lint requries you to use the `#[expect]` attribute instead of `#[allow]` -
+this attribute will trigger a warning when the lint expectation is not fulfilled. I find this
+incredibly useful, as after a big refactor, you might no longer need a few of those pesky
+`#[allow]` attributes anymore.
+
+In addition, the `allow_attributes_without_reason` lint requires that you supply a reason for
+each `#[expect]` attribute, like this:
+
+```rust
+impl Display for Bcs {
+    #[expect(clippy::min_ident_chars, reason = "From the Rust stdlib")]
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        write!(f, "BCS[{:02X?}] {}", self.opcode, self.mode)
+    }
+}
+```
+
+In this example, the `min_ident_chars` lint triggered on the `f: &mut Formatter<'_>` argument.
+This lint is present since it's generally not a great idea to have single character variable
+names. However, in this case, if you were to change the argument name to something more
+informative, like `fmt`, you would trigger the `renamed-function-params`, which exists to
+inform you when you have used a different argument name in a trait implementation (which would
+be bad because it breaks the expectations of readers familiar with this trait).
+
+So in this case, I have opted to use an `#[expect]` attribute to bypass the `min_ident_chars`
+lint, but I gave the explicit reason that we're following the standard from the Rust stdlib.
+
+### Readability concerns
+
+There are quite a few lints from the `restriction` group that hover around idiomatic Rust
+patterns. However, there are quite a few of these that can often sacrifice readability while
+not providing any real performance or correctness benefits. Don't be afraid to dismiss the
+changes these lints suggest if you believe the alternative to be better for your needs.
+
+For example:
+
+```rust
+fn create_instruction(opcode: u8, cpu: &mut Cpu) -> Option<Box<Self>> {
+    #[expect(clippy::if_then_some_else_none, reason = "Readability")]
+    if opcode == 0x90 {
+        Some(Box::from(Self {
+            opcode,
+            mode: AddressingMode::Relative(u8_to_i8(cpu.read_next_byte())),
+        }))
+    } else {
+        None
+    }
+}
+```
+
+In this example, I have opted out of the `if_then_some_else_none` lint, as I prefer the
+simple readability of the code you see above. If we were to follow the lint suggestion, we
+would get something like the following:
+
+```rust
+fn create_instruction(opcode: u8, cpu: &mut Cpu) -> Option<Box<Self>> {
+    (opcode == 0x90).then(|| Box::from(Self {
+        opcode,
+        mode: AddressingMode::Relative(u8_to_i8(cpu.read_next_byte())),
+    }))
+}
+```
+
+To my eyes, this just doesn't hit the same. It takes me a few cycles to recognize that there's
+a branching step in this logic, and it's probably not obvious to new Rust programmers what's
+even going on here. Yes, this may be more idiomatic to some teams - the point is rather that
+you should be willing to consider when these lints may not work for your use case, and break
+out the `#[expect]` attribute with a note about readability.
+
+### Warnings when using `.unwrap()` and `.expect()`
+
+I happen to code a lot in envinroments where panics aren't helpful, so I learned the hard way
+that I need to avoid `.unwrap()`s and `.expect()`s in almost all cases. Your use case may be
+quite different, but I still recommend changing your return signature to use a `Result` instead
+of the potential panic behavior from `.unwrap()` and `.expect()`.
+
+That said, you will definitely run into cases where you simple know more than the compiler
+can infer. A super common example is when you have already vetted that a slice has at least
+one element, and then you call `.first()`. Using `.unwrap()` here is generally fine (async dragons be damned), so this is a
+case where using the `#[expect]` attribute with a reasonable `reason` field makes sense.
