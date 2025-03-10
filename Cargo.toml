@@ -1,0 +1,179 @@
+[workspace]
+resolver = "2"
+members = ["changeme_bin" , "changeme_lib"]
+default-members = ["changeme_bin", "changeme_lib"]
+
+[workspace.package]
+edition = "2024"
+authors = ["mcskware"]
+description = "changeme"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/mcskware/changeme"
+readme = "README.md"
+keywords = ["rust", "changeme"]
+# categories should match the slugs at https://crates.io/category_slugs and should match exactly
+categories = ["changeme"]
+
+[workspace.dependencies]
+changeme_lib = { path = "changeme_lib" }
+
+[profile.dev]
+
+[profile.release]
+lto = true
+codegen-units = 1
+
+[workspace.lints.rust]
+# lint groups to enable
+deprecated_safe = "warn"
+future_incompatible = "warn"
+keyword_idents = "warn"
+let_underscore = "warn"
+nonstandard-style = "warn"
+rust_2018_idioms = "warn"
+rust_2024_compatibility = "warn"
+unused = "warn"
+
+# specific lints to enable
+ambiguous_negative_literals = "warn"          # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#ambiguous-negative-literals
+ffi_unwind_calls = "warn"                     # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#ffi_unwind_calls
+macro_use_extern_crate = "warn"               # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#macro_use_extern_crate
+meta_variable_misuse = "warn"                 # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#meta_variable_misuse
+missing_abi = "warn"                          # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#missing_abi
+missing_copy_implementations = "warn"         # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#missing_copy_implementations
+missing_debug_implementations = "warn"        # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#missing_debug_implementations
+missing_docs = "warn"                         # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#missing_docs
+non_ascii_idents = "warn"                     # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#non_ascii_idents
+non_local_definitions = "warn"                # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#non_local_definitions
+overflowing_literals = "warn"                 # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#overflowing_literals
+patterns_in_fns_without_body = "warn"         # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#patterns_in_fns_without_body
+redundant_imports = "warn"                    # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#redundant_imports
+redundant_lifetimes = "warn"                  # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#redundant_lifetimes
+single_use_lifetimes = "warn"                 # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#single_use_lifetimes
+trivial_casts = "warn"                        # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#trivial_casts
+trivial_numeric_casts = "warn"                # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#trivial_numeric_casts
+unit_bindings = "warn"                        # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unit_bindings
+unnameable_types = "warn"                     # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unnameable_types
+unreachable_pub = "warn"                      # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unreachable_pub
+unsafe_code = "warn"                          # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unsafe_code
+unstable_features = "warn"                    # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unstable_features
+unused_crate_dependencies = "warn"            # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unused_crate_dependencies
+unused_import_braces = "warn"                 # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unused_import_braces
+unused_lifetimes = "warn"                     # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unused_lifetimes
+unused_qualifications = "warn"                # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unused_qualifications
+unused_results = "warn"                       # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unused_results
+variant_size_differences = "warn"             # https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#variant_size_differences
+
+# lints to consider
+# fuzzy_provenance_casts = "warn" # requires `#![feature(strict_provenance)]` see https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#fuzzy-provenance-casts
+# lossy_provenance_casts = "warn" # requires `#![feature(strict_provenance)]` see https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#lossy-provenance-casts
+# must_not_suspend = "warn" # requires `#![feature(must_not_suspend)]` see https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#must-not-suspend
+# non_exhaustive_omitted_patterns = "warn" # requires `#![feature(non_exhaustive_omitted_patterns_lint)]` see https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#non-exhaustive-omitted-patterns
+# rust_2024_incompatible_pat = "warn" # requires `#![feature(ref_pat_eat_one_layer_2024)]` see https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#rust-2024-incompatible-pat
+
+[workspace.lints.clippy]
+# lint groups to enable
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+cargo = { level = "warn", priority = -1 }
+
+# specific cargo group lint to allow
+# multiple_crate_versions is usually unavoidable
+# use allowed-duplicate-crates if you want to use this option
+# in a more controlled fashion
+multiple_crate_versions = { level = "allow", priority = 1 }
+
+# restriction group lints: likely errors
+absolute_paths = "warn"                       # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#absolute_paths
+create_dir = "warn"                           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#create_dir
+else_if_without_else = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#else_if_without_else
+empty_drop = "warn"                           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#empty_drop
+exit = "warn"                                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#exit
+filetype_is_file = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#filetype_is_file
+fn_to_numeric_cast_any = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#fn_to_numeric_cast_any
+infinite_loop = "warn"                        # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#infinite_loop
+iter_over_hash_type = "warn"                  # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#iter_over_hash_type
+lossy_float_literal = "warn"                  # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#lossy_float_literal
+modulo_arithmetic = "warn"                    # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#modulo_arithmetic
+partial_pub_fields = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#partial_pub_fields
+rc_buffer = "warn"                            # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#rc_buffer
+rc_mutex = "warn"                             # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#rc_mutex
+renamed_function_params = "warn"              # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#renamed_function_params
+rest_pat_in_fully_bound_structs = "warn"      # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#rest_pat_in_fully_bound_structs
+string_add = "warn"                           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#string_add
+string_slice = "warn"                         # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#string_slice
+string_to_string = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#string_to_string
+suspicious_xor_used_as_pow = "warn"           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#suspicious_xor_used_as_pow
+todo = "warn"                                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#todo
+try_err = "warn"                              # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#try_err
+unimplemented = "warn"                        # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unimplemented
+unused_result_ok = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unused_result_ok
+unwrap_in_result = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unwrap_in_result
+
+# restriction group lints: style
+arbitrary_source_item_ordering = "allow"      # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#arbitrary_source_item_ordering
+as_underscore = "warn"                        # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#as_underscore
+assertions_on_result_states = "warn"          # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#assertions_on_result_states
+clone_on_ref_ptr = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#clone_on_ref_ptr
+decimal_literal_representation = "warn"       # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#decimal_literal_representation
+empty_enum_variants_with_brackets = "warn"    # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#empty_enum_variants_with_brackets
+empty_structs_with_brackets = "warn"          # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#empty_structs_with_brackets
+get_unwrap = "warn"                           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#get_unwrap
+if_then_some_else_none = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#if_then_some_else_none
+impl_trait_in_params = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#impl_trait_in_params
+min_ident_chars = "warn"                      # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#min_ident_chars
+missing_docs_in_private_items = "warn"        # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#missing_docs_in_private_items
+mixed_read_write_in_expression = "warn"       # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#mixed_read_write_in_expression
+mod_module_files = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#mod_module_files
+module_name_repetitions = "warn"              # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#module_name_repetitions
+needless_raw_strings = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#needless_raw_strings
+panic = "warn"                                # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#panic
+panic_in_result_fn = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#panic_in_result_fn
+pub_without_shorthand = "warn"                # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#pub_without_shorthand
+redundant_type_annotations = "warn"           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#redundant_type_annotations
+ref_patterns = "warn"                         # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#ref_patterns
+same_name_method = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#same_name_method
+single_char_lifetime_names = "warn"           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#single_char_lifetime_names
+str_to_string = "warn"                        # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#str_to_string
+tests_outside_test_module = "warn"            # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#tests_outside_test_module
+undocumented_unsafe_blocks = "warn"           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#undocumented_unsafe_blocks
+unnecessary_safety_comment = "warn"           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unnecessary_safety_comment
+unnecessary_safety_doc = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unnecessary_safety_doc
+unnecessary_self_imports = "warn"             # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unnecessary_self_imports
+unneeded_field_pattern = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unneeded_field_pattern
+unseparated_literal_suffix = "warn"           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unseparated_literal_suffix
+
+# restriction group lints: no_std
+alloc_instead_of_core = "warn"                # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#alloc_instead_of_core
+arithmetic_side_effects = "allow"             # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#arithmetic_side_effects
+std_instead_of_alloc = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#std_instead_of_alloc
+std_instead_of_core = "warn"                  # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#std_instead_of_core
+
+# restriction group lints: best practices
+allow_attributes = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#allow_attributes
+allow_attributes_without_reason = "warn"      # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#allow_attributes_without_reason
+cfg_not_test = "warn"                         # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#cfg_not_test
+default_numeric_fallback = "warn"             # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#default_numeric_fallback
+error_impl_error = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#error_impl_error
+expect_used = "warn"                          # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#expect_used
+float_cmp_const = "warn"                      # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#float_cmp_const
+format_push_string = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#format_push_string
+indexing_slicing = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#indexing_slicing
+integer_division = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#integer_division
+large_include_file = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#large_include_file
+let_underscore_must_use = "warn"              # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#let_underscore_must_use
+let_underscore_untyped = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#let_underscore_untyped
+map_err_ignore = "warn"                       # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#map_err_ignore
+map_with_unused_argument_over_ranges = "warn" # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#map_with_unused_argument_over_ranges
+missing_assert_message = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#missing_assert_message
+missing_asserts_for_indexing = "warn"         # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#missing_asserts_for_indexing
+multiple_inherent_impl = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#multiple_inherent_impl
+multiple_unsafe_ops_per_block = "warn"        # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#multiple_unsafe_ops_per_block
+mutex_atomic = "warn"                         # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#mutex_atomic
+non_zero_suggestions = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#non_zero_suggestions
+pathbuf_init_then_push = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#pathbuf_init_then_push
+# pattern_type_mismatch = "warn"                # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#pattern_type_mismatch
+string_lit_chars_any = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#string_lit_chars_any
+unused_trait_names = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unused_trait_names
+unwrap_used = "warn"                          # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unwrap_used
+verbose_file_reads = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#verbose_file_reads
