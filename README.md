@@ -4,6 +4,8 @@ This repo is intended to be a quick-startfor Rust projects. The template targets
 creates a workspace, and includes stub binary and library crates. In addition, there are examples
 of both unit tests and integration tests in the library crate.
 
+## Lint additions and modifications
+
 The major difference when using this template will be the extra lints that have been enabled. The
 `pedantic`, `nursery`, and `cargo` lint groups have been set to warn-by-default, and many of the
 lints in the `restriction` group have been enabled based on what I find to be reasonable defaults.
@@ -21,6 +23,9 @@ this lint never seem to improve readability or correctness from my point of view
 use cases. See [the Clippy source](https://github.com/rust-lang/rust-clippy/blob/master/clippy_lints/src/pattern_type_mismatch.rs)
 for this lint for more information if you want to consider using it.
 
+There are hyperlinks next to each `restriction` group lint that I've added if you'd like to learn
+more about any specific lint and what it's for. (This is super fun and informative, I recommed it!)
+
 ## Why does this exist?
 
 I have found that I tend to create workspaces a lot, but cargo (probably rightly) does not support
@@ -28,7 +33,7 @@ workspace creation when creating a new project.
 
 In addition, I like to run with lots of extra lints enabled. Not only do these lints often catch
 things that could be future gotchas, I also find that I learn a lot when one of the lints prompts
-me to re-write something in a new way.
+me to re-write something in a new way. And who doesn't benefit from learning fun new things?
 
 ## Future work
 
