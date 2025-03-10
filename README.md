@@ -151,3 +151,19 @@ I have included a `Cargo.lock` file in this repo. This is intentional, as I didn
 exclude it in `.gitignore`, since that's a judgment I don't want to make for all projects.
 You are free to add it to your `.gitignore` as you see fit (if you're building a library
 only crate, for example).
+
+### Comments
+
+There are several lints enabled that tackle comments. Specifically, you'll probably run into
+warnings when you don't include module-level documentation for each module, as well as
+comments for structs and struct fields.
+
+It is very tempting to address these by just tacking on a short comment or letting your IDE
+fill them in with a suggestion. I just want to warn you here: be strong! Write good comments
+early, and be descriptive about your struct fields (especially `pub` fields). I personally
+have a huge bias to think to myself, "oh this is super understandable, a short comment should
+be fine!" But even one short hour later, I run into that field, and I have already forgotten
+if there were any nuances, invariants to consider, or other gotchas that might be present.
+
+This is super common advice, of course, I just thought I'd mention it here (mostly to remind
+myself when I use this template again).
