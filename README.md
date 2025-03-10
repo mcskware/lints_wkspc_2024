@@ -35,3 +35,18 @@ me to re-write something in a new way.
 While the workspace does target the 2024 edition of Rust, I created this initially during the 2021
 era. I have not yet done the work of finding the new lints available in 2024 (especially in the
 `restricted` group) and deciding which should be warn-by-default for this template.
+
+## How to use the template
+
+The process I usually use is something like this:
+
+* Fork/clone or otherwise copy this repo to a new directory
+* Delete the `.git` directory
+* Run `git init` to get a fresh repo
+* Search for all instances of "changeme", and make the name changes you'd like
+    * Rename the directories for the bin and lib code
+    * Update the names of the bin and lib in the project and workspace `Cargo.toml` files (this includes the `members` and `default-members` fields in the root `Cargo.toml`)
+    * Update any references to the lib name to your newly chosen name
+    * Update the `description`, 
+* Run `cargo t` and ensure that both the unit test and the integration test still run
+* Change this readme file with your own amusing and enlightening documentation
