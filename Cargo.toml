@@ -5,10 +5,10 @@ default-members = ["changeme_bin", "changeme_lib"]
 
 [workspace.package]
 edition = "2024"
-authors = ["mcskware"]
+authors = ["changeme"]
 description = "changeme"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/mcskware/changeme"
+repository = "https://github.com/changeme/changeme"
 readme = "README.md"
 keywords = ["rust", "changeme"]
 # categories should match the slugs at https://crates.io/category_slugs and should match exactly
