@@ -144,3 +144,10 @@ That said, you will definitely run into cases where you simple know more than th
 can infer. A super common example is when you have already vetted that a slice has at least
 one element, and then you call `.first()`. Using `.unwrap()` here is generally fine (async dragons be damned), so this is a
 case where using the `#[expect]` attribute with a reasonable `reason` field makes sense.
+
+### Cargo.lock
+
+I have included a `Cargo.lock` file in this repo. This is intentional, as I didn't want to
+exclude it in `.gitignore`, since that's a judgment I don't want to make for all projects.
+You are free to add it to your `.gitignore` as you see fit (if you're building a library
+only crate, for example).
