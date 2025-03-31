@@ -2,6 +2,6 @@
 
 /// Main function
 fn main() {
-    let greeting = changeme_lib::get_greeting_message();
+    let greeting = refaqt::get_greeting_message();
     println!("{greeting}");
 }

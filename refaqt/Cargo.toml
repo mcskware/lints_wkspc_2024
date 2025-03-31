@@ -1,5 +1,5 @@
 [package]
-name = "changeme_lib"
+name = "refaqt"
 version = "0.1.0"
 edition.workspace = true
 authors.workspace = true

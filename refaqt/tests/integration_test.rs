@@ -1,8 +1,8 @@
-//! changeme integration tests
+//! integration tests
 
 #![cfg(test)]
 
-use changeme_lib::get_greeting_message;
+use refaqt::get_greeting_message;
 
 #[test]
 fn integration_get_greeting_message() {

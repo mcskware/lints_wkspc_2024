@@ -1,21 +1,21 @@
 [workspace]
 resolver = "2"
-members = ["changeme_bin" , "changeme_lib"]
-default-members = ["changeme_bin", "changeme_lib"]
+members = ["faqui" , "refaqt"]
+default-members = ["faqui", "refaqt"]
 
 [workspace.package]
 edition = "2024"
-authors = ["changeme"]
-description = "changeme"
+authors = ["mcskware"]
+description = "Integer factorization utility"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/changeme/changeme"
+repository = "https://github.com/mcskware/refaqt"
 readme = "README.md"
-keywords = ["rust", "changeme"]
+keywords = ["rust", "math"]
 # categories should match the slugs at https://crates.io/category_slugs and should match exactly
-categories = ["changeme"]
+categories = ["science"]
 
 [workspace.dependencies]
-changeme_lib = { path = "changeme_lib" }
+refaqt = { path = "refaqt" }
 
 [profile.dev]
 
