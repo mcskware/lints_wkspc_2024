@@ -1,5 +1,5 @@
 [package]
-name = "faqui"
+name = "changeme_bin"
 version = "0.1.0"
 edition.workspace = true
 authors.workspace = true
@@ -11,7 +11,7 @@ keywords.workspace = true
 categories.workspace = true
 
 [dependencies]
-refaqt.workspace = true
+changeme_lib.workspace = true
 
 [lints]
 workspace = true
