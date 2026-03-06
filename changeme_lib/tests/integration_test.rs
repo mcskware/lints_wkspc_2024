@@ -3,8 +3,10 @@
 #![cfg(test)]
 
 use changeme_lib::get_greeting_message;
+use tracing::info;
 
 #[test]
 fn integration_get_greeting_message() {
     assert_eq!(get_greeting_message(), "Hello, world!");
+    info!("Integration test is happy!");
 }

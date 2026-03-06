@@ -16,6 +16,9 @@ categories = ["changeme"]
 
 [workspace.dependencies]
 changeme_lib = { path = "changeme_lib" }
+tracing = "0.1.43"
+tracing-appender = "0.2.4"
+tracing-subscriber = { version = "0.3.22", features = ["env-filter", "fmt"] }
 
 [profile.dev]
 

@@ -1,8 +1,11 @@
 //! Library crate
 
+use tracing::debug;
+
 /// Returns a greeting message.
 #[must_use]
 pub fn get_greeting_message() -> String {
+    debug!("Getting greeting message...");
     "Hello, world!".to_owned()
 }
 
