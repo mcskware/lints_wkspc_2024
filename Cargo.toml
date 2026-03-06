@@ -75,6 +75,25 @@ variant_size_differences = "warn"             # https://doc.rust-lang.org/rustc/
 # rust_2024_incompatible_pat = "warn" # requires `#![feature(ref_pat_eat_one_layer_2024)]` see https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#rust-2024-incompatible-pat
 
 [workspace.lints.clippy]
+# the general rules for clippy lint groups:
+#
+# clippy::correctness — deny by default
+# clippy::suspicious — warn by default
+# clippy::style — warn by default
+# clippy::complexity — warn by default
+# clippy::perf — warn by default
+#
+# and the following are allow by default:
+#
+# clippy::pedantic
+# clippy::nursery
+# clippy::restriction
+# clippy::cargo
+#
+# Here, we turn on everything but restriction - as the restriction group has mutually exclusive lints,
+# like "prefer style A" vs "prefer style B" for the same syntax. So you need to pick which of those
+# exclusive lints you want from the restriction group.
+
 # lint groups to enable
 pedantic = { level = "warn", priority = -1 }
 nursery = { level = "warn", priority = -1 }
@@ -88,6 +107,7 @@ multiple_crate_versions = { level = "allow", priority = 1 }
 
 # restriction group lints: likely errors
 absolute_paths = "warn"                       # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#absolute_paths
+as_pointer_underscore = "warn"                # https://rust-lang.github.io/rust-clippy/master/index.html#as_pointer_underscore
 create_dir = "warn"                           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#create_dir
 else_if_without_else = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#else_if_without_else
 empty_drop = "warn"                           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#empty_drop
@@ -119,6 +139,7 @@ as_underscore = "warn"                        # https://rust-lang.github.io/rust
 assertions_on_result_states = "warn"          # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#assertions_on_result_states
 clone_on_ref_ptr = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#clone_on_ref_ptr
 decimal_literal_representation = "warn"       # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#decimal_literal_representation
+doc_paragraphs_missing_punctuation = "warn"   # https://rust-lang.github.io/rust-clippy/master/index.html#doc_paragraphs_missing_punctuation
 empty_enum_variants_with_brackets = "warn"    # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#empty_enum_variants_with_brackets
 empty_structs_with_brackets = "warn"          # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#empty_structs_with_brackets
 get_unwrap = "warn"                           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#get_unwrap
@@ -132,7 +153,9 @@ module_name_repetitions = "warn"              # https://rust-lang.github.io/rust
 needless_raw_strings = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#needless_raw_strings
 panic = "warn"                                # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#panic
 panic_in_result_fn = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#panic_in_result_fn
+pointer_format = "warn"                       # https://rust-lang.github.io/rust-clippy/master/index.html#pointer_format
 pub_without_shorthand = "warn"                # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#pub_without_shorthand
+redundant_test_prefix = "warn"                # https://rust-lang.github.io/rust-clippy/master/index.html#redundant_test_prefix
 redundant_type_annotations = "warn"           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#redundant_type_annotations
 ref_patterns = "warn"                         # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#ref_patterns
 same_name_method = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#same_name_method
@@ -156,11 +179,12 @@ std_instead_of_core = "warn"                  # https://rust-lang.github.io/rust
 allow_attributes = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#allow_attributes
 allow_attributes_without_reason = "warn"      # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#allow_attributes_without_reason
 cfg_not_test = "warn"                         # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#cfg_not_test
+cognitive_complexity = "warn"                 # https://rust-lang.github.io/rust-clippy/master/index.html#cognitive_complexity
 default_numeric_fallback = "warn"             # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#default_numeric_fallback
+doc_include_without_cfg = "warn"              # https://rust-lang.github.io/rust-clippy/master/index.html#doc_include_without_cfg
 error_impl_error = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#error_impl_error
 expect_used = "warn"                          # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#expect_used
 float_cmp_const = "warn"                      # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#float_cmp_const
-format_push_string = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#format_push_string
 indexing_slicing = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#indexing_slicing
 integer_division = "warn"                     # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#integer_division
 large_include_file = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#large_include_file
@@ -173,9 +197,12 @@ missing_asserts_for_indexing = "warn"         # https://rust-lang.github.io/rust
 multiple_inherent_impl = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#multiple_inherent_impl
 multiple_unsafe_ops_per_block = "warn"        # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#multiple_unsafe_ops_per_block
 mutex_atomic = "warn"                         # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#mutex_atomic
+mutex_integer = "warn"                        # https://rust-lang.github.io/rust-clippy/master/index.html#mutex_integer
 non_zero_suggestions = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#non_zero_suggestions
 pathbuf_init_then_push = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#pathbuf_init_then_push
 # pattern_type_mismatch = "warn"                # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#pattern_type_mismatch
+precedence_bits = "warn"                      # https://rust-lang.github.io/rust-clippy/master/index.html#precedence_bits
+return_and_then = "warn"                      # https://rust-lang.github.io/rust-clippy/master/index.html#return_and_then
 string_lit_chars_any = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#string_lit_chars_any
 unused_trait_names = "warn"                   # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unused_trait_names
 unwrap_used = "warn"                          # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#unwrap_used
