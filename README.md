@@ -4,6 +4,8 @@ This repo is intended to be a quick-startfor Rust projects. The template targets
 creates a workspace, and includes stub binary and library crates. In addition, there are examples
 of both unit tests and integration tests in the library crate.
 
+The lints are current as of Rust 1.94 (see clippy changelog).
+
 ## Lint additions and modifications
 
 The major difference when using this template will be the extra lints that have been enabled. The
