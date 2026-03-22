@@ -1,4 +1,6 @@
-//! Binary crate
+//! Binary crate.
+
+use std::{fs, io};
 
 use tracing::info;
 use tracing_appender::rolling;
@@ -17,7 +19,8 @@ fn init_tracing() {
     let log_dir = "logs";
 
     // ensure the "logs" subdirectory exists
-    std::fs::create_dir_all(log_dir).expect("Failed to create logs directory");
+    #[expect(clippy::expect_used, reason = "If logs fail, we should fail.")]
+    fs::create_dir_all(log_dir).expect("Failed to create logs directory");
 
     // Logs will be in ./logs/app.log, rotated daily. Adjust as needed.
     let file_appender = rolling::daily(log_dir, "app.log");
@@ -34,7 +37,7 @@ fn init_tracing() {
     // --- STDOUT LAYER: only INFO and above ---
 
     let stdout_layer = layer()
-        .with_writer(std::io::stdout)
+        .with_writer(io::stdout)
         .with_ansi(true)
         .with_target(true)
         .with_level(true)
@@ -50,7 +53,7 @@ fn init_tracing() {
     info!("Tracing initialized");
 }
 
-/// Main function
+/// Main function.
 fn main() {
     init_tracing();
 

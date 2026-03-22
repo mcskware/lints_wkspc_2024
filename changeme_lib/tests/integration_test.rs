@@ -1,4 +1,4 @@
-//! changeme integration tests
+//! changeme integration tests.
 
 #![cfg(test)]
 

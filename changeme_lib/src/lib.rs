@@ -1,4 +1,4 @@
-//! Library crate
+//! Library crate.
 
 use tracing::debug;
 
@@ -14,7 +14,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_get_greeting_message() {
+    fn greeting_message() {
         assert_eq!(get_greeting_message(), "Hello, world!");
     }
 }
