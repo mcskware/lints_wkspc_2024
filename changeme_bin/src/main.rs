@@ -38,7 +38,7 @@ fn init_tracing() {
         .with_ansi(true)
         .with_target(true)
         .with_level(true)
-        .with_filter(EnvFilter::new("debug")); // INFO, WARN, ERROR
+        .with_filter(EnvFilter::new("debug,turn::this::span=off")); // INFO, WARN, ERROR
 
     // --- COMBINE LAYERS INTO A SINGLE SUBSCRIBER ---
 
