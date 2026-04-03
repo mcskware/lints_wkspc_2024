@@ -5,6 +5,7 @@ default-members = ["changeme_bin", "changeme_lib"]
 
 [workspace.package]
 edition = "2024"
+rust-version = "1.94"
 authors = ["changeme"]
 description = "changeme"
 license = "MIT OR Apache-2.0"
