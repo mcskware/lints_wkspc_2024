@@ -5,7 +5,7 @@ default-members = ["changeme_bin", "changeme_lib"]
 
 [workspace.package]
 edition = "2024"
-rust-version = "1.94"
+rust-version = "1.97"
 authors = ["changeme"]
 description = "changeme"
 license = "MIT OR Apache-2.0"
@@ -146,6 +146,8 @@ empty_structs_with_brackets = "warn"          # https://rust-lang.github.io/rust
 get_unwrap = "warn"                           # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#get_unwrap
 if_then_some_else_none = "warn"               # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#if_then_some_else_none
 impl_trait_in_params = "warn"                 # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#impl_trait_in_params
+inline_trait_bounds = "warn"                  # https://rust-lang.github.io/rust-clippy/master/index.html#inline_trait_bounds
+inline_modules = "warn"                       # https://rust-lang.github.io/rust-clippy/master/index.html#inline_modules
 min_ident_chars = "warn"                      # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#min_ident_chars
 missing_docs_in_private_items = "warn"        # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#missing_docs_in_private_items
 mixed_read_write_in_expression = "warn"       # https://rust-lang.github.io/rust-clippy/master/?groups=restriction#mixed_read_write_in_expression

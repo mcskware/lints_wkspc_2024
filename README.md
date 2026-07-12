@@ -4,7 +4,13 @@ This repo is intended to be a quick-startfor Rust projects. The template targets
 creates a workspace, and includes stub binary and library crates. In addition, there are examples
 of both unit tests and integration tests in the library crate.
 
-The lints are current as of Rust 1.94 (see clippy changelog).
+The lints are current as of Rust 1.97 (see clippy changelog).
+
+## NOTE
+
+The `inline_modules` lint has a bug in 1.97 where it will flag modules marked with `#[cfg(test)]`
+even though the docs say it shouldn't. There is a fix for this coming in 1.98, so this lint is
+left as triggered in this codebase for the 1.97 release.
 
 ## Lint additions and modifications
 
